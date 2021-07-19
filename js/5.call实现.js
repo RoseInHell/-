@@ -15,7 +15,7 @@ Function.prototype.call2 = function(context) {
   // 用来接受传递的参数
   var args = [];
 
-  // i从一开始是因为第一个参数为要绑定的对象
+  // i从1开始是因为第一个参数为要绑定的对象
   for(var i=1; i<arguments.length; i++) {
     // 这里用字符串拼接是为了 后续 eval 解析
     args.push('arguments[' + i + ']');
@@ -34,6 +34,25 @@ Function.prototype.call2 = function(context) {
 
   // 返回 result
   return result
+}
+
+// 不用eval版本
+Function.prototype.call3 = function(context) {
+  var context = context || window;
+
+  context.fn = this;
+  
+  var args = [];
+
+  for (var i=1; i<arguments.length; i++) {
+    args.push(arguments[i]);
+  }
+
+  var result = context.fn(...args);
+
+  delete context.fn;
+
+  return result;
 }
 
 var value = 2;
