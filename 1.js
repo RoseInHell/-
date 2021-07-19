@@ -1,17 +1,27 @@
-var arr = [1,2,3,4];
+function createAnother(child, parent) {
+  var prototype = Object.create(parent.prototype);
+  console.log(prototype)
+  parent.constructor = child;
+  child.prototype = prototype;
+}
+function Parent(name) {
+  this.name = name;
+  this.color = [1,2,3]
+}
 
-arr.forEach((item, key) => {
-  Object.defineProperty(arr, item, {
-    get() {
-      console.log(item)
-      return item;
-    },
-    set(newVal) {
-      console.log('set')
-      item = newVal;
-    }
-  })
-})
+Parent.prototype.sayName = function() {
+  console.log(this.name);
+}
 
-// arr[1] = 0
-// console.log(arr)
+function Child(name, age) {
+  this.age = age;
+  Parent.call(this, name);
+}
+
+createAnother(Child, Parent)
+
+var person = {
+  name: '1'
+}
+
+console.log(Object.create(person))
