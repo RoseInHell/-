@@ -1,37 +1,17 @@
-function debounce(fn, wait, immediate) {
-  var timer = null;
-   
-  return function() {
-    let context = this;
+var arr = [1,2,3,4];
 
-    if (!timer && immediate) {
-      fn.apply(context, arguments);
+arr.forEach((item, key) => {
+  Object.defineProperty(arr, item, {
+    get() {
+      console.log(item)
+      return item;
+    },
+    set(newVal) {
+      console.log('set')
+      item = newVal;
     }
+  })
+})
 
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      fn.apply(context, arguments)
-    }, wait);
-  }
-}
-
-function throttle(fn, wait, immeditae) {
-  var timer = null;
-  var callNow = immeditae
-
-  return function() {
-    let context = this;
-
-    if (callNow) {
-      fn.apply(context, arguments);
-      callNow = false
-    }
-
-    if (!timer) {
-      timer = setTimeout(() => {
-        fn.apply(context, arguments);
-        timer = null;
-      }, wait);
-    }
-  }
-}
+// arr[1] = 0
+// console.log(arr)
