@@ -13,6 +13,8 @@ function flatten(arr) {
 }
 
 console.log(flatten(arr));
+
+
 function flatten1(arr) {
   while (arr.some(item => Array.isArray(item))) {
     arr = [].concat(...arr)
@@ -20,4 +22,3 @@ function flatten1(arr) {
 
   return arr;
 }
-console.log(flatten1(arr))
