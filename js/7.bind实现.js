@@ -7,8 +7,7 @@ Function.prototype.bind2 = function(context) {
 
   // 获取bind2函数从第二个参数到最后一个参数
   var args = Array.prototype.slice.call(arguments, 1);
-  // 用空函数做中转
-  var fNOP = function () {};
+
 
   var fbound = function() {
     var bindArgs = Array.prototype.slice.call(arguments);
@@ -25,6 +24,9 @@ Function.prototype.bind2 = function(context) {
     return self.apply(this instanceof self ? this : context, args.concat(bindArgs));
   }
   // 修改返回函数的 prototype 为绑定函数的 prototype，实例就可以继承函数的原型中的值
+  
+  // 用空函数做中转
+  var fNOP = function () {};
 
   fNOP.prototype = self.prototype;
   fbound.prototype = new fNOP();
