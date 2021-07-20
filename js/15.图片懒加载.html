@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      display: block;
+      margin-bottom: 50px;
+      width: 400px;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <img src="./imgs/default.png" data-lazy-img="./imgs/01.jpg" alt="">
+  <img src="./imgs/default.png" data-lazy-img="./imgs/02.jpg" alt="">
+  <img src="./imgs/default.png" data-lazy-img="./imgs/03.jpg" alt="">
+  <img src="./imgs/default.png" data-lazy-img="./imgs/04.jpg" alt="">
+  <img src="./imgs/default.png" data-lazy-img="./imgs/05.jpg" alt="">
+  <img src="./imgs/default.png" data-lazy-img="./imgs/06.jpg" alt="">
+  <img src="./imgs/default.png" data-lazy-img="./imgs/07.jpg" alt="">
+  <img src="./imgs/default.png" data-lazy-img="./imgs/08.jpg" alt="">
+  <img src="./imgs/default.png" data-lazy-img="./imgs/09.jpg" alt="">
+
+  <script>
+    var imgList = document.getElementsByTagName('img');
+    var len = imgList.length;
+    var index = 0;
+
+    imdLazyLoad();
+
+    window.onscroll = imdLazyLoad;
+    function imdLazyLoad() {
+      var clientHeight = document.documentElement.clientHeight;
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      for (var i=index; i<len; i++) {
+        if (imgList[i].offsetTop < clientHeight + scrollTop) {
+          if (imgList[i].getAttribute('src') === './imgs/default.png') {
+            imgList[i].src = imgList[i].getAttribute('data-lazy-img');
+          }
+          index = i + 1;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,23 +1,22 @@
-var arr = [1, [2, [3, 4]]];
-
-function flatten(arr) {
-  var result = [];
-  for (var i=0; i<arr.length; i++) {
-    if (Array.isArray(arr[i])) {
-      result = result.concat(flatten(arr[i]));
-    } else {
-      result.push(arr[i]);
-    }
-  }
-  return result;
+function inheritPrototype(Child, Parent) {
+  var prototype = Object.create(Parent.prototype);
+  prototype.constructor = Child;
+  Child.prototype = prototype;
 }
 
-console.log(flatten(arr));
-function flatten1(arr) {
-  while (arr.some(item => Array.isArray(item))) {
-    arr = [].concat(...arr)
-  }
-
-  return arr;
+function Parent(name) {
+  this.name = name;
 }
-console.log(flatten1(arr))
+
+Parent.prototype.sayName = function() {
+  console.log(this.name);
+}
+
+function Child(name, age) {
+  this.age = age;
+  Parent.call(this, name);
+}
+
+inheritPrototype(Child);
+
+Child.prototype.sa

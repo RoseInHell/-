@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .new_wrapper {
+        width: 600px;
+        text-align: center;
+        display: flex;
+        flex-direction: column-reverse;
+      }
+      .new_wrapper ul {
+        display: flex;
+        list-style: none;
+      }
+      .new_wrapper ul li a {
+        display: inline-block;
+        text-align: center;
+        width: 80px;
+        cursor: pointer;
+        padding: 15px 5px;
+        margin: 0 10px;
+        color: #999;
+        text-decoration: none;
+      }
+      .new_content {
+        width: 600px;
+        height: 200px;
+      }
+
+      #lastest,
+      #news,
+      #notice,
+      #activity,
+      #stragety {
+        width: 100%;
+        height: 200px;
+        display: none;
+      }
+      #lastest:target,
+      #news:target,
+      #notice:target,
+      #activity:target,
+      #stragety:target {
+        display: block;
+      }
+
+      #lastest:target ~ .tab_content li:nth-of-type(1) {
+        color: black;
+        border-bottom: 1px solid black;
+      }
+      #news:target ~ .tab_content li:nth-of-type(2) {
+        color: black;
+        border-bottom: 1px solid black;
+      }
+      #notice:target ~ .tab_content li:nth-of-type(3) {
+        color: black;
+        border-bottom: 1px solid black;
+      }
+      #activity:target ~ .tab_content li:nth-of-type(4) {
+        color: black;
+        border-bottom: 1px solid black;
+      }
+      #stragety:target ~ .tab_content li:nth-of-type(5) {
+        color: black;
+        border-bottom: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="new_wrapper">
+      <div id="lastest">最新最最新</div>
+      <div id="news">新闻新闻新闻</div>
+      <div id="notice">公告公告</div>
+      <div id="activity">活动活动</div>
+      <div id="stragety">攻略攻略</div>
+      <ul class="tab_content">
+        <li><a href="#lastest">最新</a></li>
+        <li><a href="#news">新闻</a></li>
+        <li><a href="#notice">公告</a></li>
+        <li><a href="#activity">活动</a></li>
+        <li><a href="#stragety">攻略</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

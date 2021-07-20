@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 100%;
+    }
+    .inner {
+      position: relative;
+      width: 30px;
+      height: 300px;
+      margin: 40px auto;
+      background: green;
+      transform-origin: center top; /* 这里指定起始点为居中，靠上 */
+      animation: swing 6s; /* 指定动画的名称，与整个动画的时间 */
+      animation-timing-function: linear; /* 指定运行的速度曲线，liner表示线性的，即匀速。 */
+      animation-iteration-count: infinite; /* 设置无限摆动 */
+    }
+    .circular {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: red;
+      position: absolute;
+      bottom: -41px;
+      left: -11px;
+    }
+    @keyframes swing {
+      0%{
+        transform: rotate(65deg);
+      }
+      25%{
+        transform: rotate(0deg);
+      }
+      50%{
+        transform: rotate(-65deg);
+      }
+      75%{
+        transform: rotate(0deg);
+      }
+      100%{
+        transform: rotate(65deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="inner">
+      <div class="circular">
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

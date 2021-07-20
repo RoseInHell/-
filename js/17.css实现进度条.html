@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      background-color: rgb(201, 199, 199);
+      width: 500px;
+      height: 50px;
+      border-radius: 25px;
+    }
+    .inner{
+      height: 100%;
+      border-radius: 25px;
+      transition: all 5s ease;
+    }
+    .line {
+      width: 20%;
+      background-color: green;
+    }
+    #button {
+      margin-top: 50px;
+      margin-left: 50px;
+      width: 100px;
+      height: 50px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="inner line"></div>
+  </div>
+  <button id="button">click me</button>
+  <script>
+    var button = document.getElementById('button');
+    button.addEventListener('click', function() {
+      var per = 100;
+      var inner = document.getElementsByClassName('inner')[0];
+      inner.style.width = per + '%';
+    })
+    
+  </script>
+</body>
+</html>

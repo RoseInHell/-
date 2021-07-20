@@ -12,6 +12,7 @@ function objectFactory() {
     此外因为 shift 会修改原数组，所以 arguments 会被去除第一个参数
   */
   var Constructor = [].shift.call(arguments);
+  
   obj.__proto__ = Constructor.prototype;
   
   // 执行函数创建实例，并且绑定this
