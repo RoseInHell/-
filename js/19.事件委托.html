@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托</title>
+</head>
+<body>
+  <ul id="list">
+    <li id="item1"><span>1</span></li>
+    <li id="item2">2</li>
+    <li id="item3">3</li>
+  </ul>
+
+  <script>
+    var list = document.getElementById('list');
+    var li = document.getElementsByTagName('li');
+
+    list.addEventListener('click', function(event) {
+      var target = event.target;
+      if (target.tagName === 'LI') {
+        console.log(target.innerHTML)
+      }
+      // 获取index
+      // for (let i=0; i<li.length; i++) {
+      //   if (li[i] === target) {
+      //     console.log(i)
+      //   }
+      // }
+    })
+
+    var node = document.createElement('li');
+    var texxtnode = document.createTextNode('item4');
+    node.appendChild(texxtnode);
+    list.appendChild(node);
+  </script>
+</body>
+</html>
