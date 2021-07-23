@@ -30,3 +30,12 @@ function Otaku (name, age) {
 }
 
 var person = objectFactory(Otaku, 'Kevin', '18')
+
+
+var p = [];
+var A = new Function();
+A.prototype = p;
+var a = new A; // a 变成了数组对象
+a.push(1);
+console.log(a.length);
+console.log(p.length);
