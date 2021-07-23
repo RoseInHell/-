@@ -25,17 +25,19 @@
   <img src="./imgs/default.png" data-lazy-img="./imgs/08.jpg" alt="">
   <img src="./imgs/default.png" data-lazy-img="./imgs/09.jpg" alt="">
 
+  <script src="./1.防抖和节流.js"></script>
   <script>
     var imgList = document.getElementsByTagName('img');
     var len = imgList.length;
-    var index = 0;
+    var index = 0; //存储图片加载到的位置，避免每次都从第一张图片开始遍历
 
-    imdLazyLoad();
+    imdLazyLoad(); //页面载入完毕加载可是区域内的图片
 
-    window.onscroll = imdLazyLoad;
-    function imdLazyLoad() {
-      var clientHeight = document.documentElement.clientHeight;
-      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    // window.onscroll = imdLazyLoad;
+    function imdLazyLoad() { //监听页面滚动事件
+      console.log(123)
+      var clientHeight = document.documentElement.clientHeight; // 可见区域高度
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 滚动条距离顶部高度
       for (var i=index; i<len; i++) {
         if (imgList[i].offsetTop < clientHeight + scrollTop) {
           if (imgList[i].getAttribute('src') === './imgs/default.png') {
@@ -45,6 +47,7 @@
         }
       }
     }
+    window.addEventListener('scroll', throttle(imdLazyLoad, 500, false))
   </script>
 </body>
 </html>
