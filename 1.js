@@ -1,16 +1,17 @@
-var imgList = document.getElementsByTagName('img');
-var len = imgList.length;
-var index = 0;
+Function.prototype.bind2 = function(context) {
+  var self = this;
 
-function lazyLoad() {
-  var clientHeight = document.documentElement.clientHeight;
-  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  for (var i=index; i<len; i++) {
-    if (imgList[i].offsetTop < clientHeight + scrollTop) {
-      if (imgList[i].getAttribute('src') === './default.png') {
-        imgList[i].src = imgList[i].getAttribute('data-lazy-img');
-      }
-      index = i + 1;
-    }
+  var args = [].slice.call(arguments, 1);
+
+  var fbound = function() {
+    var bindArgs = [].slice.call(arguments);
+
+    return self.apply(this instanceof self ? this : context, args.concat(bindArgs));
   }
+
+  var fNOP = function () {};
+  fNOP.prototype = self.prototype;
+  fbound.prototype = new fNOP();
+
+  return fbound;
 }
