@@ -6,43 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    div {  
-      position: relative;  
-      width: 100px;  
-      height: 100px;  
-    }  
-    p {  
-      position: absolute;  
-      font-size: 20px;  
-      width: 100px;  
-      height: 100px;  
-    }  
-    .a {  
-      background-color: blue;  
-      z-index: 1;  
-    }  
-    .b {  
-      background-color: green;  
-      z-index: 2;  
-      top: 20px;  
-      left: 20px;  
-    }  
-    .c {  
-      background-color: red;  
-      z-index: 3;  
-      top: -20px;  
-      left: 40px;  
+    body h1 + p .special {
+      color: red;
     }
   </style>
 </head>
 <body>
-  <div>  
-    <p class="a">a</p>  
-    <p class="b">b</p>  
-  </div> 
-
-  <div>  
-    <p class="c">c</p>  
+  <div>
+    <h1>个人信息</h1>
   </div>  
   
   <script src="1.js">
