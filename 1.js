@@ -1,17 +1,20 @@
-Function.prototype.bind2 = function(context) {
-  var self = this;
+function JSONP({url, params, callback}) {
+  return new Promise((resolve, reject) => {
+    var script = document.createElement('script');
 
-  var args = [].slice.call(arguments, 1);
+    window[callback] = function (data) {
+      resolve(data);
+      document.body.removeChild();
+    }
 
-  var fbound = function() {
-    var bindArgs = [].slice.call(arguments);
+    params = { ...params, callback };
+    var attr = [];
+    
+    for (let key in params) {
+      attr.push(`${key}=${params[key]}`);
+    }
 
-    return self.apply(this instanceof self ? this : context, args.concat(bindArgs));
-  }
-
-  var fNOP = function () {};
-  fNOP.prototype = self.prototype;
-  fbound.prototype = new fNOP();
-
-  return fbound;
+    script.src = `${url}?${attr.join('&')}`;
+    document.body.appendChild(script)
+  })
 }
