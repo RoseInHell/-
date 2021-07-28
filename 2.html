@@ -6,14 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    body h1 + p .special {
-      color: red;
+    .box {
+      height: 200px;
+      display: flex;
     }
+    .box>div{
+      height: 100%;
+    }
+    .box-left {
+      width: 200px;
+      /* float: left; */
+      background-color: blue;
+    }
+
+    .box-right {
+      margin-left: 10px;
+      flex-grow: 1;
+      background-color: red;
+    }
+
   </style>
 </head>
 <body>
-  <div>
-    <h1>个人信息</h1>
+  <div class="box">
+    <div class="box-left"></div>
+    <div class="box-right"></div>
   </div>  
   
   <script src="1.js">
