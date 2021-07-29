@@ -11,3 +11,4 @@
 // loader是干啥的，plugin是干啥的，plugin的原理？
 // jsbridge 原理
 // XSS CSRF
+// promise

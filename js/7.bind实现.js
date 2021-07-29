@@ -1,8 +1,12 @@
 Function.prototype.bind2 = function(context) {
+  // context 是 xx.call(obj) 括号内的obj
+  // context 为null时 视为指向 window
+
   if (typeof this !== 'function') {
     throw new Error("Function.prototype.bind - what is trying to be bound is not callable")
   }
 
+  //这里的 this 是 xx.bind(obj) 的 xx函数
   var self = this;
 
   // 获取bind2函数从第二个参数到最后一个参数
@@ -34,10 +38,28 @@ Function.prototype.bind2 = function(context) {
 }
 
 
-function bar() {}
+var foo = {
+  value: 1
+};
 
-var bindFoo = bar.bind2(null);
+function bar() {
+  console.log(this.value);
+}
 
-bindFoo.prototype.value = 1;
+// 返回了一个函数
+var bindFoo = bar.bind2(foo); 
 
-console.log(bar.prototype.value) // 1
+bindFoo(); // 1
+
+
+// var value = 2;
+// var foo = {
+//   value: 1,
+//   bar: bar.bind(null)
+// };
+
+// function bar() {
+//   console.log(this.value);
+// }
+
+// foo.bar() // 2

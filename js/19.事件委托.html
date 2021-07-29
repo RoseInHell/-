@@ -14,10 +14,27 @@
   </ul>
 
   <script>
+    /* 
+      “事件代理”即是把原本需要绑定在子元素的响应事件委托给父元素，
+      让父元素担当事件监听的职务。事件代理的原理是DOM元素的事件冒泡。
+
+      优点： 
+            1. 可以大量节省内存占用，减少事件注册
+            2. 可以实现当新增子对象时无需再次对其绑定（动态绑定事件）
+    */
     var list = document.getElementById('list');
     var li = document.getElementsByTagName('li');
 
     list.addEventListener('click', function(event) {
+      // 阻止默认行为
+      event.preventDefault();
+
+      // 阻止冒泡事件
+      event.stopPropagation()
+      // IE阻止冒泡
+      e.cancelBubble = true
+
+
       var target = event.target;
       if (target.tagName === 'LI') {
         console.log(target.innerHTML)

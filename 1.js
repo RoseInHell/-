@@ -1,20 +1,18 @@
-function JSONP({url, params, callback}) {
-  return new Promise((resolve, reject) => {
-    var script = document.createElement('script');
+Function.prototype.bind2 = function(context) {
+  var self = this;
 
-    window[callback] = function (data) {
-      resolve(data);
-      document.body.removeChild();
-    }
 
-    params = { ...params, callback };
-    var attr = [];
-    
-    for (let key in params) {
-      attr.push(`${key}=${params[key]}`);
-    }
+  var args = [].slice.call(arguments, 1);
 
-    script.src = `${url}?${attr.join('&')}`;
-    document.body.appendChild(script)
-  })
+  var found = function() {
+    var bindArgs = [].slice.call(arguments);
+
+    return self.apply(this instanceof self ? this : context, args.concat(bindArgs));
+  }
+
+  var fNOP = function(){};
+  fNOP.prototype = self.prototype;
+  found.prototype = new fNOP();
+
+  return found;
 }
