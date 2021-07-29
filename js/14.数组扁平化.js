@@ -1,6 +1,6 @@
 var arr = [1, [2, [3, 4]]];
 
-function flatten(arr) {
+function flat(arr) {
   var result = [];
   for (var i=0; i<arr.length; i++) {
     if (Array.isArray(arr[i])) {
@@ -12,10 +12,10 @@ function flatten(arr) {
   return result;
 }
 
-console.log(flatten(arr));
+console.log(flat(arr));
 
 
-function flatten1(arr) {
+function flat1(arr) {
   while (arr.some(item => Array.isArray(item))) {
     arr = [].concat(...arr)
   }
