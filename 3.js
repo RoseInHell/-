@@ -12,3 +12,4 @@
 // jsbridge 原理
 // XSS CSRF
 // promise
+// encodeURIComponent() 函数 与 encodeURI() 函数的区别
