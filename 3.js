@@ -11,5 +11,5 @@
 // loader是干啥的，plugin是干啥的，plugin的原理？
 // jsbridge 原理
 // XSS CSRF
-// promise
+// promise 是放在哪个线程里的
 // encodeURIComponent() 函数 与 encodeURI() 函数的区别
