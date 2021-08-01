@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonp</title>
+</head>
+<body>
+  <script>
+    let jsonp = (url, data={}, callback='callback') => {
+      let dataStr = url.indexOf('?') === -1 ? '?' : '&'
+      for (let key in data) {
+        dataStr += `${key}=${data[key]}&`
+      }
+      dataStr += `callback=` + callback
+
+      let script = document.createElement('script');
+      script.src = url + dataStr;
+      document.body.appendChild(script);
+
+      window[callback]=(data) => {
+        console.log(data)
+      }
+    }
+
+    jsonp('https://apiv4.diyigaokao.com/college/list/byMultiple')
+  </script>
+  <!-- <script src="https://photo.sina.cn/aj/index?page=1&cate=recommend&callback=callback"></script> -->
+</body>
+</html>
