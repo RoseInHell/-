@@ -14,3 +14,27 @@
 // promise 是放在哪个线程里的
 // encodeURIComponent() 函数 与 encodeURI() 函数的区别
 // requestAnimationFrame
+
+const MyPromise = require('./1');
+
+const promise = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success')
+  }, 2000); 
+})
+
+promise.then(value => {
+  console.log(1)
+  console.log('resolve', value);
+})
+
+promise.then(value => {
+  console.log(2)
+  console.log('resolve', value);
+})
+
+promise.then(value => {
+  console.log(3)
+  console.log('resolve', value);
+})
+
