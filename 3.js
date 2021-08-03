@@ -15,22 +15,29 @@
 // encodeURIComponent() 函数 与 encodeURI() 函数的区别
 // requestAnimationFrame
 
-const MyPromise = require('./1');
+const MyPromise = require('./promise');
 
 const promise = new MyPromise((resolve, reject) => {
   resolve('success')
 })
 
+function other() {
+  return new MyPromise((resolve, reject) => {
+    resolve('other');
+  })
+}
+
 promise.then(value => {
-  console.log(1);
-  console.log('resolve', value);
+  console.log(1)
+  console.log('resolve', value)
   throw new Error('then error')
 }, reason => {
-  console.log(2);
+  console.log(2)
   console.log(reason.message)
 }).then(value => {
   console.log(3)
-},reason => {
+  console.log(value);
+}, reason => {
   console.log(4)
   console.log(reason.message)
 })
