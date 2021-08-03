@@ -31,6 +31,8 @@ function throttle(fn, wait, immediate) {
   let callNow = immediate;
 
   return function() {
+    
+    console.log(this)
     let context = this;
     let args = arguments;
 

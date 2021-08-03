@@ -18,23 +18,19 @@
 const MyPromise = require('./1');
 
 const promise = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('success')
-  }, 2000); 
+  resolve('success')
 })
 
 promise.then(value => {
-  console.log(1)
+  console.log(1);
   console.log('resolve', value);
-})
-
-promise.then(value => {
-  console.log(2)
-  console.log('resolve', value);
-})
-
-promise.then(value => {
+  throw new Error('then error')
+}, reason => {
+  console.log(2);
+  console.log(reason.message)
+}).then(value => {
   console.log(3)
-  console.log('resolve', value);
+},reason => {
+  console.log(4)
+  console.log(reason.message)
 })
-
