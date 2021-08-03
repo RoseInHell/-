@@ -6,43 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .middle{
-        margin-left: 200px;
-        margin-right: 200px;
-      }
-      .left {
-        background: palevioletred;
+      .outer {
         width: 200px;
         height: 200px;
-        float: left;
-        font-size: 40px;
-        color: #fff;
-        margin-left:-100%;
+        background-color: red;
+        position: absolute;
+        margin-top: 10px;
+        padding: 10px;
+        top: 10px;
       }
-      .right {
-        width: 200px;
-        height: 200px;
-        background: purple;
-        font-size: 40px;
-        float: left;
-        color: #fff;
-        margin-left:-200px;
-      }
-      .middle-container{
-        width: 100%;
-        background: paleturquoise;
-        height: 200px;
-        float: left;
+      .inner {
+        top: 10px;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: royalblue;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="middle-container">
-        <div class="middle">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
-      </div>
-      <div class="left">left</div>
-      <div class="right">right</div>
+    <div class="outer">
+      <div class="inner"></div>
     </div>
     <script src="1.js"></script>
   </body>

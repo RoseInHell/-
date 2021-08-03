@@ -6,7 +6,6 @@
 // http1.1和http2.0区别
 // 事件流
 // computed原理
-// webpack实现原理
 // 怎么解决点击后300ms的延迟
 // loader是干啥的，plugin是干啥的，plugin的原理？
 // jsbridge 原理
@@ -14,30 +13,30 @@
 // promise 是放在哪个线程里的
 // encodeURIComponent() 函数 与 encodeURI() 函数的区别
 // requestAnimationFrame
+// webpack实现原理
+// webpack分包
+// plugin的本质
+// babel的原理
 
 const MyPromise = require('./promise');
 
+
 const promise = new MyPromise((resolve, reject) => {
+  // 目前这里只处理同步的问题
   resolve('success')
 })
 
-function other() {
-  return new MyPromise((resolve, reject) => {
-    resolve('other');
+function other () {
+  return new MyPromise((resolve, reject) =>{
+    resolve('other')
   })
 }
-
 promise.then(value => {
   console.log(1)
   console.log('resolve', value)
-  throw new Error('then error')
-}, reason => {
-  console.log(2)
-  console.log(reason.message)
+  // return other()
+  return '123'
 }).then(value => {
-  console.log(3)
-  console.log(value);
-}, reason => {
-  console.log(4)
-  console.log(reason.message)
+  console.log(2)
+  console.log('resolve', value)
 })

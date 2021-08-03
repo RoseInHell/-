@@ -44,6 +44,7 @@ function getDep(target, key) {
   return dep;
 }
 
+
 // vue2对raw进行数据劫持
 function reactive(raw) {
   Object.keys(raw).forEach(key => {

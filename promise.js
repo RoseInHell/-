@@ -1,48 +1,28 @@
 const PENDING = 'pending';
-const FUIFILLED = 'fulfilled';
+const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
-class MyPromise {
 
+class MyPromise {
   status = PENDING;
   value = null;
   reason = null;
 
-  onFulFilledCallbacks = []
-  onRejectedCallbacks = []
+  onFulFilledCallbacks = [];
+  onRejectedCallbacks = []; 
 
   constructor(executor) {
-    try {
-      executor(this.resolve, this.reject);
-    } catch(error) {
-      this.reject(error);
-    }
-  }
-  
-  static resolve (parameter) {
-    if (parameter instanceof MyPromise) {
-      return parameter
-    }
-
-    return new MyPromise(resolve => {
-      resolve(parameter);
-    })
-  }
-
-  static reject (reason) {
-    return new MyPromise((resolve, reject) => {
-      reject(reason);
-    })
+    executor(this.resolve, this.reject);
   }
 
   resolve = (value) => {
     if (this.status === PENDING) {
-      this.status = FUIFILLED;
-      this.value = value;
+      this.status = FULFILLED;
+      this.value = value
 
       while (this.onFulFilledCallbacks.length) {
         const callback = this.onFulFilledCallbacks.shift();
-        callback(value)
+        callback(value);
       }
     }
   }
@@ -57,56 +37,21 @@ class MyPromise {
         callback(reason)
       }
     }
+
   }
 
   then = (onFulFilled, onRejected) => {
-
-    onFulFilled = typeof onFulFilled === 'function' ? onFulFilled : value => value
-    onRejected = typeof onratechange === 'function' ? onRejected : reason => { this.reason }
-
     const promise2 = new MyPromise((resolve, reject) => {
-      if (this.status === FUIFILLED) {
+      if (this.status === FULFILLED) {
         queueMicrotask(() => {
-          try {
-            const x = onFulFilled(this.value);
-            resolvePromise(promise2,x, resolve, reject);
-          } catch (error) {
-            reject(error)
-          }
+          const x = onFulFilled(this.value);
+          resolvePromise(promise2, x, resolve, reject);
         })
-
       } else if (this.status === REJECTED) {
-        queueMicrotask(() => {
-          try {
-            const x = onRejected(this.reason);
-            resolvePromise(promise2, x, resolve, reject);
-
-          } catch (error) {
-            reject(error)
-          }
-        })
-
+        onRejected(this.reason);
       } else if (this.status === PENDING) {
-        this.onFulFilledCallbacks.push(() => {
-          queueMicrotask(() => {
-            try {
-              const x = onFulFilled(this.value);
-              resolvePromise(promise2, x, resolve, reject);
-            } catch (error) {
-              reject(error);
-            }
-          })
-        });
-        this.onRejectedCallbacks.push(() => {
-          queueMicrotask(() => {
-            try {
-              const x = onRejected(this.reason);
-              resolvePromise(promise2, x, resolve, reject);
-            } catch (error) {
-              reject(error);
-            }
-          })
-        });
+        this.onFulFilledCallbacks.push(onFulFilled);
+        this.onRejectedCallbacks.push(onRejected);
       }
     })
 
@@ -116,12 +61,12 @@ class MyPromise {
 
 function resolvePromise(promise2, x, resolve, reject) {
   if (promise2 === x) {
-    return reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
+    reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
   }
   if (x instanceof MyPromise) {
-    x.then(resolve, reject)
+    x.then(resolve, reject);
   } else {
-    resolve(x)
+    resolve(x);
   }
 }
 
