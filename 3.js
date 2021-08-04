@@ -17,26 +17,28 @@
 // webpack分包
 // plugin的本质
 // babel的原理
+// TCP/IP 3次握手,4次挥手
 
-const MyPromise = require('./promise');
-
+const MyPromise = require("./promise")
 
 const promise = new MyPromise((resolve, reject) => {
   // 目前这里只处理同步的问题
-  resolve('success')
+  resolve("success")
 })
 
-function other () {
-  return new MyPromise((resolve, reject) =>{
-    resolve('other')
+function other() {
+  return new MyPromise((resolve, reject) => {
+    resolve("other")
   })
 }
-promise.then(value => {
-  console.log(1)
-  console.log('resolve', value)
-  // return other()
-  return '123'
-}).then(value => {
-  console.log(2)
-  console.log('resolve', value)
-})
+promise
+  .then((value) => {
+    console.log(1)
+    console.log("resolve", value)
+    // return other()
+    return "123"
+  })
+  .then((value) => {
+    console.log(2)
+    console.log("resolve", value)
+  })
