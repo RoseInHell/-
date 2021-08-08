@@ -1,42 +1,14 @@
-// 图片懒加载
-// 跨域
-// es6中的解构中的...和上面的区别
-// es6中的扩展运算符...的实现原理
-// import和require的区别
-// http1.1和http2.0区别
-// 事件流
-// computed原理
 // 怎么解决点击后300ms的延迟
 // loader是干啥的，plugin是干啥的，plugin的原理？
-// jsbridge 原理
 // XSS CSRF
-// promise 是放在哪个线程里的
 // encodeURIComponent() 函数 与 encodeURI() 函数的区别
 // requestAnimationFrame
-// webpack实现原理
-// webpack分包
-// plugin的本质
-// babel的原理
 
-const MyPromise = require('./promise');
-
-
-const promise = new MyPromise((resolve, reject) => {
-  // 目前这里只处理同步的问题
-  resolve('success')
-})
-
-function other () {
-  return new MyPromise((resolve, reject) =>{
-    resolve('other')
-  })
-}
-promise.then(value => {
-  console.log(1)
-  console.log('resolve', value)
-  // return other()
-  return '123'
-}).then(value => {
-  console.log(2)
-  console.log('resolve', value)
-})
+// 每日一题
+// 8.9 TS 泛型
+// 8.10 TS 接口
+// 8.11 promise 用法
+// 8.12-8.13 promise 实现
+// 8.14 Generator 函数的语法
+// 8.15 Generator 函数的异步应用
+// 8.16 async 函数
